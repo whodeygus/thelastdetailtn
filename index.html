@@ -7,14 +7,118 @@
   <meta name="description" content="The Last Detail TN provides elegant, stress-free wedding day-of coordination across East Tennessee. Cameron Puckett ensures flawless execution—so you can savor every moment." />
   <meta name="theme-color" content="#0f172a" />
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Last Detail TN | Wedding Day-of Coordination" />
+  <meta property="og:description" content="Elegant, stress-free wedding day-of coordination across East Tennessee with Cameron Puckett." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.thelastdetailtn.com/" />
+  <meta property="og:image" content="/assets/og-cover.jpg" />
+
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0f172a',
+            blush: '#f4e7e9',
+            sand: '#f8f5f2',
+            brand: {
+              50:'#fbf7f8',100:'#f7eef0',200:'#ecd9dd',300:'#e0c3ca',400:'#cfa6b1',500:'#bd8999',600:'#a36f7f',700:'#815764',800:'#5f404a',900:'#3e2931'
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2,6,23,.08)'
+          }
+        }
+      }
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-
   <link rel="icon" href="/assets/favicon.svg" />
 </head>
 <body class="bg-sand text-ink font-body">
-  <h1>Welcome to The Last Detail TN</h1>
-  <p>This is a starter file. Full site code will go here (already prepared in ChatGPT).</p>
+  <!-- Hero Section -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="font-display text-4xl sm:text-5xl leading-tight mb-6">Breathe. I'll handle <span class="text-brand-700">the last detail</span>.</h1>
+        <p class="text-lg text-slate-700 max-w-xl">Day-of wedding coordination for couples who want to be fully present. We create airtight timelines, manage vendors, cue your moments, and quietly solve problems before you ever notice them.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="#contact" class="inline-flex items-center rounded-full bg-brand-800 text-white px-6 py-3 font-semibold shadow-soft hover:bg-ink transition">Check availability</a>
+          <a href="#services" class="inline-flex items-center rounded-full ring-1 ring-ink/20 px-6 py-3 font-semibold hover:bg-white transition">View packages</a>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="/assets/hero.jpg" alt="Cameron Puckett—The Last Detail TN" class="w-full rounded-2xl shadow-soft object-cover">
+        <div class="absolute -bottom-6 -left-6 -z-10 h-40 w-40 rounded-3xl bg-brand-200"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1">
+        <h2 class="font-display text-3xl sm:text-4xl">Meet your day-of coordinator</h2>
+        <p class="mt-4 text-slate-700">Hi! I’m <span class="font-semibold">Cameron Puckett</span>, owner of The Last Detail TN. I believe you deserve to feel present, calm, and celebrated on your wedding day. With a background in logistics and a love for thoughtful design, I bring structure and warmth to every celebration.</p>
+        <p class="mt-3 text-slate-700">I’m based in East Tennessee and travel across Knoxville, Sevierville, Gatlinburg, the Smokies, and beyond.</p>
+      </div>
+      <div class="order-1 lg:order-2">
+        <img src="/assets/owner-portrait.jpg" alt="Cameron Puckett portrait" class="w-full rounded-2xl shadow-soft object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="font-display text-3xl sm:text-4xl">Let’s make your day effortless</h2>
+        <p class="mt-3 text-slate-600">Tell us about your date, venue, and must-haves. We’ll respond quickly with availability and next steps.</p>
+      </div>
+      <form class="mt-10 grid gap-6 bg-sand p-6 rounded-2xl shadow-soft" action="https://formspree.io/f/your-id" method="POST">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium">Name</label>
+            <input name="name" required class="mt-2 w-full rounded-xl border px-4 py-3" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Email</label>
+            <input name="email" type="email" required class="mt-2 w-full rounded-xl border px-4 py-3" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Wedding date</label>
+          <input name="date" type="date" class="mt-2 w-full rounded-xl border px-4 py-3" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Venue / Location</label>
+          <input name="venue" class="mt-2 w-full rounded-xl border px-4 py-3" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">What are you envisioning?</label>
+          <textarea name="message" rows="5" class="mt-2 w-full rounded-xl border px-4 py-3"></textarea>
+        </div>
+        <button class="inline-flex items-center justify-center rounded-full bg-brand-800 text-white px-6 py-3 font-semibold hover:bg-ink">Send inquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-600">
+      <p>© <span id="year"></span> The Last Detail TN · East Tennessee</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
