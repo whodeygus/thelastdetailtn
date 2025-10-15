@@ -194,13 +194,16 @@
 
       <!-- 1 — make sure this file exists exactly as /assets/gallery/1.jpg (lowercase) -->
       <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
-        <img
-  src="/assets/gallery/1.jpg"
+       <img
+  src="/assets/gallery/1-800.jpg"
+  srcset="/assets/gallery/1-800.jpg 800w, /assets/gallery/1.jpg 1600w"
+  sizes="(min-width:1024px) 33vw, 50vw"
   alt="Romantic tablescape with gauze runner and pink ribbon candles"
   loading="lazy" decoding="async"
   class="w-full h-full object-cover"
   style="aspect-ratio: 4 / 3;"
-  onerror="this.onerror=null; this.src='/assets/gallery/CamandGuswedding_details-4868.jpg';">
+  onerror="this.onerror=null; this.src='/assets/gallery/1.JPG';">
+
 
       </figure>
 
