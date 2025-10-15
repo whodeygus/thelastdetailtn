@@ -13,7 +13,23 @@
   <meta property="og:image" content="/assets/og-cover.jpg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme: { extend: { colors: { ink:'#0f172a', blush:'#f4e7e9', sand:'#f8f5f2', brand:{50:'#fbf7f8',100:'#f7eef0',200:'#ecd9dd',300:'#e0c3ca',400:'#cfa6b1',500:'#bd8999',600:'#a36f7f',700:'#815764',800:'#5f404a',900:'#3e2931'} }, fontFamily:{ display:['\"Playfair Display\"','ui-serif','Georgia','serif'], body:['Inter','ui-sans-serif','system-ui','sans-serif'] }, boxShadow:{ soft:'0 10px 30px rgba(2,6,23,.08)'} } } }
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0f172a',
+            blush: '#f4e7e9',
+            sand: '#f8f5f2',
+            brand: {50:'#fbf7f8',100:'#f7eef0',200:'#ecd9dd',300:'#e0c3ca',400:'#cfa6b1',500:'#bd8999',600:'#a36f7f',700:'#815764',800:'#5f404a',900:'#3e2931'}
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          boxShadow: { soft: '0 10px 30px rgba(2,6,23,.08)' }
+        }
+      }
+    }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.svg" />
@@ -68,7 +84,7 @@
         </ul>
       </div>
       <div class="relative">
-        <img src="/assets/hero.jpg" alt="Cameron Puckett—The Last Detail TN" class="w-full rounded-2xl shadow-soft object-cover">
+        <img src="/assets/hero.jpg?v=5" alt="Cameron Puckett—The Last Detail TN" class="w-full rounded-2xl shadow-soft object-cover" onerror="this.onerror=null; this.src='/assets/owner-portrait.jpg?v=5';">
         <div class="absolute -bottom-6 -left-6 -z-10 h-40 w-40 rounded-3xl bg-brand-200"></div>
       </div>
     </div>
@@ -159,21 +175,69 @@
         <p class="mt-3 text-slate-700">I’m based in East Tennessee and travel across Knoxville, Sevierville, Gatlinburg, the Smokies, and beyond.</p>
       </div>
       <div class="order-1 lg:order-2">
-        <img src="/assets/owner-portrait.jpg" alt="Cameron Puckett portrait" class="w-full rounded-2xl shadow-soft object-cover">
+        <img src="/assets/owner-portrait.jpg?v=5" alt="Cameron Puckett portrait" class="w-full rounded-2xl shadow-soft object-cover">
       </div>
     </div>
   </section>
 
+  <!-- Gallery with path fallbacks -->
   <section id="gallery" class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="font-display text-3xl sm:text-4xl">Gallery</h2>
         <p class="mt-3 text-slate-600">A few beautiful moments from recent celebrations.</p>
       </div>
+
       <div class="masonry mt-10" id="galleryGrid">
-        <img src="/assets/gallery/1.jpg" class="rounded-xl shadow-soft cursor-pointer" alt="Wedding photo 1">
+        <script>
+          function tryPaths(img, paths){
+            let i = 0;
+            img.onerror = function(){
+              if (i < paths.length) img.src = paths[i++];
+              else img.onerror = null;
+            };
+          }
+        </script>
+
+        <!-- 1 -->
+        <figure class="rounded-xl shadow-soft overflow-hidden">
+          <img src="/assets/gallery/1.jpg" alt="Romantic tablescape"
+               loading="lazy" decoding="async" class="w-full h-auto cursor-pointer"
+               onerror="tryPaths(this, ['/assets/gallery/1.JPG','/assets/1.jpg','/assets/1.JPG'])">
+        </figure>
+        <!-- 2 -->
+        <figure class="rounded-xl shadow-soft overflow-hidden">
+          <img src="/assets/gallery/2.jpg" alt="Outdoor ceremony with parasols"
+               loading="lazy" decoding="async" class="w-full h-auto cursor-pointer"
+               onerror="tryPaths(this, ['/assets/gallery/2.JPG','/assets/2.jpg','/assets/2.JPG'])">
+        </figure>
+        <!-- 3 -->
+        <figure class="rounded-xl shadow-soft overflow-hidden">
+          <img src="/assets/gallery/3.jpg" alt="Sculptural lantern by garden lounge"
+               loading="lazy" decoding="async" class="w-full h-auto cursor-pointer"
+               onerror="tryPaths(this, ['/assets/gallery/3.JPG','/assets/3.jpg','/assets/3.JPG'])">
+        </figure>
+        <!-- 4 -->
+        <figure class="rounded-xl shadow-soft overflow-hidden">
+          <img src="/assets/gallery/4.jpg" alt="Greenhouse reception"
+               loading="lazy" decoding="async" class="w-full h-auto cursor-pointer"
+               onerror="tryPaths(this, ['/assets/gallery/4.JPG','/assets/4.jpg','/assets/4.JPG'])">
+        </figure>
+        <!-- 5 -->
+        <figure class="rounded-xl shadow-soft overflow-hidden">
+          <img src="/assets/gallery/5.jpg" alt="Outdoor chapel aisle"
+               loading="lazy" decoding="async" class="w-full h-auto cursor-pointer"
+               onerror="tryPaths(this, ['/assets/gallery/5.JPG','/assets/5.jpg','/assets/5.JPG'])">
+        </figure>
+        <!-- 6 -->
+        <figure class="rounded-xl shadow-soft overflow-hidden">
+          <img src="/assets/gallery/6.jpg" alt="Draped white backdrop"
+               loading="lazy" decoding="async" class="w-full h-auto cursor-pointer"
+               onerror="tryPaths(this, ['/assets/gallery/6.JPG','/assets/6.jpg','/assets/6.JPG'])">
+        </figure>
       </div>
     </div>
+
     <div id="lightbox" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-6">
       <button id="lightboxClose" class="absolute top-6 right-6 text-white/80 hover:text-white" aria-label="Close">✕</button>
       <img id="lightboxImg" src="#" alt="Expanded gallery" class="max-h-[85vh] w-auto rounded-xl shadow-xl" />
@@ -212,21 +276,28 @@
         <h2 class="font-display text-3xl sm:text-4xl">Let’s make your day effortless</h2>
         <p class="mt-3 text-slate-600">Tell us about your date, venue, and must-haves. We’ll respond quickly with availability and next steps.</p>
       </div>
-      <form id="inquiryForm" class="mt-10 grid gap-6 bg-sand p-6 rounded-2xl shadow-soft" action="https://formspree.io/f/your-id" method="POST">
+
+      <form id="inquiryForm" class="mt-10 grid gap-6 bg-sand p-6 rounded-2xl shadow-soft"
+            action="https://formsubmit.co/chsquires13@gmail.com"
+            method="POST">
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium">Name</label>
-            <input name="name" required class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="name" required autocomplete="name" class="mt-2 w-full rounded-xl border px-4 py-3" />
           </div>
           <div>
             <label class="block text-sm font-medium">Email</label>
-            <input name="email" type="email" required class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="email" type="email" required autocomplete="email" class="mt-2 w-full rounded-xl border px-4 py-3" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Contact number</label>
+            <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-5555" class="mt-2 w-full rounded-xl border px-4 py-3" />
           </div>
           <div>
             <label class="block text-sm font-medium">Wedding date</label>
             <input name="date" type="date" class="mt-2 w-full rounded-xl border px-4 py-3" />
           </div>
-          <div>
+          <div class="md:col-span-2">
             <label class="block text-sm font-medium">Venue / Location</label>
             <input name="venue" class="mt-2 w-full rounded-xl border px-4 py-3" />
           </div>
@@ -235,10 +306,16 @@
           <label class="block text-sm font-medium">What are you envisioning?</label>
           <textarea name="message" rows="5" class="mt-2 w-full rounded-xl border px-4 py-3"></textarea>
         </div>
+
         <input type="hidden" name="_subject" value="New Inquiry — The Last Detail TN" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://www.thelastdetailtn.com/?thanks=1" />
+        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
         <button class="inline-flex items-center justify-center rounded-full bg-brand-800 text-white px-6 py-3 font-semibold hover:bg-ink">Send inquiry</button>
         <p id="formMsg" class="text-sm mt-3"></p>
-        <p class="text-xs text-slate-500">This form uses Formspree. Replace the <code>action</code> URL with your own endpoint.</p>
+        <p class="text-xs text-slate-500">Powered by FormSubmit (free).</p>
       </form>
     </div>
   </section>
@@ -251,10 +328,11 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('mobileBtn').addEventListener('click', ()=>{
       document.getElementById('mobileNav').classList.toggle('hidden');
     });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     const grid = document.getElementById('galleryGrid');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -273,36 +351,11 @@
       close.addEventListener('click', ()=>{ lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); });
       lightbox.addEventListener('click', (e)=>{ if (e.target === lightbox) { close.click(); } });
     }
-    const form = document.getElementById('inquiryForm');
-    const msg = document.getElementById('formMsg');
-    form.addEventListener('submit', async (e) => {
-      if (form.action.includes('your-id')) {
-        e.preventDefault();
-        msg.textContent = 'Please connect Formspree: replace the form action URL with your Formspree endpoint.';
-        msg.className = 'text-sm mt-3 text-red-600';
-        return;
-      }
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: data
-        });
-        if (res.ok) {
-          msg.textContent = 'Thanks! Your message has been sent.';
-          msg.className = 'text-sm mt-3 text-green-700';
-          form.reset();
-        } else {
-          msg.textContent = 'Something went wrong. Please email us directly.';
-          msg.className = 'text-sm mt-3 text-red-600';
-        }
-      } catch (err) {
-        msg.textContent = 'Network error. Please try again or email us.';
-        msg.className = 'text-sm mt-3 text-red-600';
-      }
-    });
+    const params = new URLSearchParams(location.search);
+    if (params.get('thanks') === '1') {
+      const msg = document.getElementById('formMsg');
+      if (msg) { msg.textContent = 'Thanks! Your message has been sent.'; msg.className = 'text-sm mt-3 text-green-700'; }
+    }
   </script>
 </body>
 </html>
