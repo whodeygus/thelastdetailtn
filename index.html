@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Last Detail TN | Wedding Day-of Coordination</title>
   <meta name="description" content="The Last Detail TN provides elegant, stress-free wedding day-of coordination across East Tennessee. Cameron Puckett ensures flawless execution—so you can savor every moment." />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#171321" />
   <meta property="og:title" content="The Last Detail TN | Wedding Day-of Coordination" />
   <meta property="og:description" content="Elegant, stress-free wedding day-of coordination across East Tennessee with Cameron Puckett." />
   <meta property="og:type" content="website" />
@@ -26,16 +26,20 @@
       theme: {
         extend: {
           colors: {
-            ink: '#0f172a',
+            ink: '#171321',
             blush: '#f4e7e9',
-            sand: '#f8f5f2',
-            brand: {50:'#fbf7f8',100:'#f7eef0',200:'#ecd9dd',300:'#e0c3ca',400:'#cfa6b1',500:'#bd8999',600:'#a36f7f',700:'#815764',800:'#5f404a',900:'#3e2931'}
+            sand: '#faf7f3',
+            brand: {50:'#fbf7f8',100:'#f7eef0',200:'#ecd9dd',300:'#e0c3ca',400:'#cfa6b1',500:'#bd8999',600:'#a36f7f',700:'#815764',800:'#5f404a',900:'#2e1b21'},
+            gold: {300:'#e6cd9a',400:'#d9b674',500:'#c69a52',600:'#b98d4f',700:'#9c7640'}
           },
           fontFamily: {
             display: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
             body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
           },
-          boxShadow: { soft: '0 10px 30px rgba(2,6,23,.08)' }
+          boxShadow: {
+            soft: '0 10px 30px rgba(23,19,33,.08)',
+            lift: '0 24px 60px -12px rgba(23,19,33,.22)'
+          }
         }
       }
     }
@@ -44,10 +48,44 @@
   <link rel="icon" href="/assets/favicon.svg" />
   <style>
     html { scroll-behavior: smooth; }
-    .masonry { column-count: 3; column-gap: 1rem; }
-    .masonry img { break-inside: avoid; margin-bottom: 1rem; }
+
+    /* Editorial masonry gallery */
+    .masonry { column-count: 3; column-gap: 1.25rem; }
+    .masonry figure { break-inside: avoid; margin-bottom: 1.25rem; }
     @media (max-width: 1024px) { .masonry { column-count: 2; } }
     @media (max-width: 640px) { .masonry { column-count: 1; } }
+
+    /* Stitched divider — signature motif */
+    .stitch {
+      height: 1px;
+      background-image: repeating-linear-gradient(90deg, #c69a52 0 7px, transparent 7px 15px);
+      opacity: .55;
+    }
+    .stitch-v {
+      width: 1px;
+      background-image: repeating-linear-gradient(180deg, #c69a52 0 7px, transparent 7px 15px);
+      opacity: .5;
+    }
+
+    .eyebrow {
+      letter-spacing: .18em;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #9c7640;
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+      outline: 2px solid #9c7640;
+      outline-offset: 3px;
+    }
   </style>
   <script type="application/ld+json">
 {
@@ -78,8 +116,9 @@
 
 </head>
 <body class="bg-sand text-ink font-body">
-  <header class="bg-white/80 backdrop-blur sticky top-0 z-50 shadow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+  <header class="bg-sand/90 backdrop-blur sticky top-0 z-50 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <a href="#home" class="inline-flex items-center" aria-label="The Last Detail TN — Home">
         <img
           src="/assets/logo-mark.png?v=3"
@@ -92,18 +131,18 @@
         <span class="sr-only">The Last Detail TN</span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-8">
-        <a class="hover:text-brand-700" href="#services">Services</a>
-        <a class="hover:text-brand-700" href="#process">Process</a>
-        <a class="hover:text-brand-700" href="#about">About</a>
-        <a class="hover:text-brand-700" href="#gallery">Gallery</a>
-        <a class="hover:text-brand-700" href="#faq">FAQ</a>
-        <a class="hover:text-brand-700" href="#contact">Contact</a>
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium tracking-wide">
+        <a class="hover:text-gold-700 transition-colors" href="#services">Services</a>
+        <a class="hover:text-gold-700 transition-colors" href="#process">Process</a>
+        <a class="hover:text-gold-700 transition-colors" href="#about">About</a>
+        <a class="hover:text-gold-700 transition-colors" href="#gallery">Gallery</a>
+        <a class="hover:text-gold-700 transition-colors" href="#faq">FAQ</a>
+        <a href="#contact" class="inline-flex items-center rounded-full bg-ink text-white px-5 py-2.5 hover:bg-brand-800 transition-colors">Check your date</a>
       </nav>
-      <button id="mobileBtn" class="md:hidden p-2 rounded hover:bg-sand" aria-label="Open Menu">☰</button>
+      <button id="mobileBtn" class="md:hidden p-2 rounded hover:bg-blush" aria-label="Open Menu">☰</button>
     </div>
-    <div id="mobileNav" class="md:hidden hidden border-t bg-white">
-      <div class="px-4 py-3 space-y-2">
+    <div id="mobileNav" class="md:hidden hidden border-t border-ink/5 bg-sand">
+      <div class="px-4 py-4 space-y-3 text-sm font-medium">
         <a class="block" href="#services">Services</a>
         <a class="block" href="#process">Process</a>
         <a class="block" href="#about">About</a>
@@ -114,254 +153,334 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <section id="home" class="relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-10 items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 grid lg:grid-cols-2 gap-14 items-center">
       <div>
-        <h1 class="font-display text-4xl sm:text-5xl leading-tight mb-6">
-          Breathe. I'll handle <span class="text-brand-700">the last detail</span>.
+        <p class="eyebrow uppercase">East Tennessee · Day-of Coordination</p>
+        <div class="stitch w-14 mt-3 mb-6"></div>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.1] mb-6">
+          Breathe. I'll handle <span class="text-brand-700 italic">the last detail</span>.
         </h1>
-        <p class="text-lg text-slate-700 max-w-xl">
+        <p class="text-lg text-slate-700 max-w-lg leading-relaxed">
           Day-of wedding coordination for couples who want to be fully present. We create airtight timelines,
           manage vendors, cue your moments, and quietly solve problems before you ever notice them.
         </p>
 
-        <ul class="mt-10 grid grid-cols-2 gap-6 text-sm text-slate-700 max-w-lg">
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-brand-700"></span> Vendor & timeline management</li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-brand-700"></span> Rehearsal coordination</li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-brand-700"></span> Ceremony & reception cueing</li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-brand-700"></span> Emergency kit + problem solving</li>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="#contact" class="inline-flex items-center rounded-full bg-ink text-white px-7 py-3.5 font-semibold hover:bg-brand-800 transition-colors shadow-soft">
+            Check your date
+          </a>
+          <a href="#gallery" class="inline-flex items-center rounded-full ring-1 ring-ink/15 px-7 py-3.5 font-semibold hover:bg-white transition-colors">
+            View the gallery
+          </a>
+        </div>
+
+        <ul class="mt-12 grid grid-cols-2 gap-x-6 gap-y-4 text-sm text-slate-700 max-w-md">
+          <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold-500 shrink-0"></span>Vendor &amp; timeline management</li>
+          <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold-500 shrink-0"></span>Rehearsal coordination</li>
+          <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold-500 shrink-0"></span>Ceremony &amp; reception cueing</li>
+          <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold-500 shrink-0"></span>Emergency kit + problem solving</li>
         </ul>
       </div>
 
-      <div class="relative flex items-center justify-center">
-        <div class="bg-white rounded-2xl shadow-soft p-4">
-          <picture>
-            <source srcset="/assets/logo.webp?v=1" type="image/webp" />
-            <img
-              src="/assets/logo.png?v=3"
-              alt="The Last Detail TN logo"
-              class="block lg:w-[560px] md:w-[520px] sm:w-[420px] w-[320px] max-w-full h-auto object-contain"
-            />
-          </picture>
+      <div class="relative reveal">
+        <div class="absolute -inset-3 rounded-[2rem] border border-gold-400/40 -z-10"></div>
+        <div class="rounded-2xl overflow-hidden shadow-lift">
+          <img
+            src="/assets/gallery/2.jpg"
+            alt="Greenhouse wedding reception coordinated by The Last Detail TN"
+            class="w-full h-[480px] object-cover"
+            fetchpriority="high"
+            onerror="this.onerror=null; this.src='/assets/logo.png?v=3'; this.classList.remove('object-cover','h-[480px]'); this.classList.add('object-contain','bg-white','p-8');"
+          />
         </div>
-        <div class="absolute -bottom-6 -left-6 -z-10 h-40 w-40 rounded-3xl bg-brand-200"></div>
+        <div class="absolute -bottom-7 -left-7 bg-white rounded-2xl shadow-soft px-6 py-5 max-w-[220px] hidden sm:block">
+          <p class="font-display text-2xl text-brand-800">$895</p>
+          <p class="text-xs text-slate-500 mt-1">Starting price · East Tennessee &amp; surrounding areas</p>
+        </div>
       </div>
+    </div>
 
+    <!-- Fact strip -->
+    <div class="border-y border-ink/5 bg-white/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-center gap-x-12 gap-y-3 text-sm text-slate-600">
+        <span class="font-medium text-ink">Starting at $895</span>
+        <span class="hidden sm:inline text-gold-500">•</span>
+        <span>Knoxville · Sevierville · Gatlinburg · The Smokies</span>
+        <span class="hidden sm:inline text-gold-500">•</span>
+        <span>Rehearsal leadership included in Signature &amp; Premier</span>
+      </div>
     </div>
   </section>
 
-  <section id="services" class="py-20 bg-white">
+  <div class="stitch max-w-7xl mx-auto"></div>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="font-display text-3xl sm:text-4xl">Packages starting at $895</h2>
-        <p class="mt-3 text-slate-600">
-          Every wedding is unique. Share your plans and we’ll recommend the best coordination fit.
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="eyebrow uppercase">Packages</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">Starting at $895</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Every wedding is unique. Share your plans and we'll recommend the best coordination fit.
         </p>
       </div>
 
-      <div class="mt-12 relative overflow-hidden rounded-2xl bg-brand-100 border shadow-soft">
-        <div class="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-brand-200 opacity-50"></div>
-        <div class="absolute -left-12 -bottom-12 h-56 w-56 rounded-full bg-brand-300 opacity-30"></div>
+      <div class="mt-14 relative overflow-hidden rounded-[1.75rem] bg-brand-100 border border-brand-200 shadow-soft reveal">
+        <div class="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-brand-200 opacity-50"></div>
+        <div class="absolute -left-14 -bottom-14 h-64 w-64 rounded-full bg-gold-300 opacity-20"></div>
 
-        <div class="relative px-6 sm:px-10 py-12 grid lg:grid-cols-2 gap-8 items-center">
+        <div class="relative px-6 sm:px-12 py-14 grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <h3 class="font-display text-2xl sm:text-3xl">Let’s make your day effortless</h3>
-            <p class="mt-3 text-slate-700">
-              Tell us your date, venue, and priorities. We’ll reply quickly with availability, a
+            <h3 class="font-display text-2xl sm:text-3xl">Let's make your day effortless</h3>
+            <p class="mt-4 text-slate-700 leading-relaxed">
+              Tell us your date, venue, and priorities. We'll reply quickly with availability, a
               recommended package, and clear next steps.
             </p>
-            <ul class="mt-4 text-slate-700 text-sm space-y-2">
-              <li>• Stress-free day-of leadership</li>
-              <li>• Vendor & timeline orchestration</li>
-              <li>• Ceremony & reception cueing</li>
+            <ul class="mt-6 text-slate-700 text-sm space-y-2.5">
+              <li class="flex items-center gap-2.5"><span class="h-1.5 w-1.5 rounded-full bg-gold-500"></span>Stress-free day-of leadership</li>
+              <li class="flex items-center gap-2.5"><span class="h-1.5 w-1.5 rounded-full bg-gold-500"></span>Vendor &amp; timeline orchestration</li>
+              <li class="flex items-center gap-2.5"><span class="h-1.5 w-1.5 rounded-full bg-gold-500"></span>Ceremony &amp; reception cueing</li>
             </ul>
-            <div class="mt-6 flex items-center gap-3">
-              <a href="#contact" class="inline-flex items-center rounded-full bg-brand-800 text-white px-6 py-3 font-semibold hover:bg-ink">
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#contact" class="inline-flex items-center rounded-full bg-brand-800 text-white px-6 py-3 font-semibold hover:bg-ink transition-colors">
                 Open inquiry form
               </a>
-              <a href="#faq" class="inline-flex items-center rounded-full ring-1 ring-ink/20 px-6 py-3 font-semibold hover:bg-white">
+              <a href="#faq" class="inline-flex items-center rounded-full ring-1 ring-ink/20 px-6 py-3 font-semibold hover:bg-white transition-colors">
                 Frequently asked
               </a>
             </div>
           </div>
 
-          <div class="bg-white/70 rounded-2xl p-6 border">
+          <div class="bg-white rounded-2xl p-7 border border-ink/5 shadow-soft">
             <div class="flex items-center gap-3">
-              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-200 text-brand-800 font-semibold">LD</span>
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-200 text-brand-800 font-display font-semibold">LD</span>
               <div>
                 <p class="font-medium">The Last Detail TN</p>
                 <p class="text-xs text-slate-500">Day-of Coordination</p>
               </div>
             </div>
-            <div class="mt-4 text-slate-700 text-sm">
+            <div class="mt-5 text-slate-700 text-sm space-y-1.5">
               <p><span class="font-semibold">Starting at:</span> $895</p>
-              <p class="mt-1">East Tennessee & surrounding areas</p>
-              <p class="mt-4 text-slate-600">
-                We’ll tailor the scope to your venue, logistics, and guest count.
+              <p>East Tennessee &amp; surrounding areas</p>
+              <p class="pt-2 text-slate-600">
+                We'll tailor the scope to your venue, logistics, and guest count.
               </p>
             </div>
-            <a href="#contact" class="mt-6 w-full inline-flex items-center justify-center rounded-full bg-ink text-white px-5 py-3 font-semibold hover:bg-brand-800">
+            <a href="#contact" class="mt-7 w-full inline-flex items-center justify-center rounded-full bg-ink text-white px-5 py-3 font-semibold hover:bg-brand-800 transition-colors">
               Check your date
             </a>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <section id="process" class="py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-start">
-      <div>
-        <h2 class="font-display text-3xl sm:text-4xl">A calm, proven process</h2>
-        <p class="mt-4 text-slate-700 max-w-prose">From the first call to your last sparkler, we keep you informed and at ease. Here’s how we make wedding days effortless.</p>
+  <!-- PROCESS -->
+  <section id="process" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-start">
+      <div class="reveal lg:sticky lg:top-28">
+        <p class="eyebrow uppercase">How it works</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">A calm, proven process</h2>
+        <p class="mt-4 text-slate-700 max-w-prose leading-relaxed">
+          From the first call to your last sparkler, we keep you informed and at ease. Here's how we
+          make wedding days effortless.
+        </p>
       </div>
-      <ol class="space-y-6">
-        <li class="bg-white rounded-2xl p-6 shadow-soft">
-          <h3 class="font-semibold">1) Discovery & date check</h3>
-          <p class="text-slate-700 text-sm mt-2">Share your vision and logistics. We confirm availability and the right package for your needs.</p>
+
+      <ol class="relative space-y-8 pl-2">
+        <div class="stitch-v absolute left-[27px] top-2 bottom-2 hidden sm:block"></div>
+
+        <li class="relative sm:pl-16 reveal">
+          <span class="hidden sm:flex absolute left-0 top-0 h-14 w-14 rounded-full bg-white border border-gold-400/50 items-center justify-center font-display text-lg text-brand-700 shadow-soft">01</span>
+          <div class="bg-white rounded-2xl p-6 shadow-soft">
+            <h3 class="font-semibold">Discovery &amp; date check</h3>
+            <p class="text-slate-700 text-sm mt-2 leading-relaxed">Share your vision and logistics. We confirm availability and the right package for your needs.</p>
+          </div>
         </li>
-        <li class="bg-white rounded-2xl p-6 shadow-soft">
-          <h3 class="font-semibold">2) Timeline & vendor orchestration</h3>
-          <p class="text-slate-700 text-sm mt-2">We build a precise timeline, coordinate with vendors, and finalize layouts and cues.</p>
+        <li class="relative sm:pl-16 reveal">
+          <span class="hidden sm:flex absolute left-0 top-0 h-14 w-14 rounded-full bg-white border border-gold-400/50 items-center justify-center font-display text-lg text-brand-700 shadow-soft">02</span>
+          <div class="bg-white rounded-2xl p-6 shadow-soft">
+            <h3 class="font-semibold">Timeline &amp; vendor orchestration</h3>
+            <p class="text-slate-700 text-sm mt-2 leading-relaxed">We build a precise timeline, coordinate with vendors, and finalize layouts and cues.</p>
+          </div>
         </li>
-        <li class="bg-white rounded-2xl p-6 shadow-soft">
-          <h3 class="font-semibold">3) Rehearsal leadership</h3>
-          <p class="text-slate-700 text-sm mt-2">We lead rehearsal so everyone knows their moment, order, and timing.</p>
+        <li class="relative sm:pl-16 reveal">
+          <span class="hidden sm:flex absolute left-0 top-0 h-14 w-14 rounded-full bg-white border border-gold-400/50 items-center justify-center font-display text-lg text-brand-700 shadow-soft">03</span>
+          <div class="bg-white rounded-2xl p-6 shadow-soft">
+            <h3 class="font-semibold">Rehearsal leadership</h3>
+            <p class="text-slate-700 text-sm mt-2 leading-relaxed">We lead rehearsal so everyone knows their moment, order, and timing.</p>
+          </div>
         </li>
-        <li class="bg-white rounded-2xl p-6 shadow-soft">
-          <h3 class="font-semibold">4) Flawless wedding day</h3>
-          <p class="text-slate-700 text-sm mt-2">We manage the entire day, cue events, handle behind-the-scenes issues, and protect your experience.</p>
+        <li class="relative sm:pl-16 reveal">
+          <span class="hidden sm:flex absolute left-0 top-0 h-14 w-14 rounded-full bg-white border border-gold-400/50 items-center justify-center font-display text-lg text-brand-700 shadow-soft">04</span>
+          <div class="bg-white rounded-2xl p-6 shadow-soft">
+            <h3 class="font-semibold">Flawless wedding day</h3>
+            <p class="text-slate-700 text-sm mt-2 leading-relaxed">We manage the entire day, cue events, handle behind-the-scenes issues, and protect your experience.</p>
+          </div>
         </li>
       </ol>
     </div>
   </section>
 
-  <section id="about" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-      <div class="order-2 lg:order-1">
-        <h2 class="font-display text-3xl sm:text-4xl">Meet your day-of coordinator</h2>
-        <p class="mt-4 text-slate-700">Hi! I’m <span class="font-semibold">Cameron Puckett</span>, owner of The Last Detail TN. I believe you deserve to feel present, calm, and celebrated on your wedding day. With a background in logistics and a love for thoughtful design, I bring structure and warmth to every celebration.</p>
-        <p class="mt-3 text-slate-700">I’m based in East Tennessee and travel across Knoxville, Sevierville, Gatlinburg, the Smokies, and beyond.</p>
+  <div class="stitch max-w-7xl mx-auto"></div>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="order-2 lg:order-1 reveal">
+        <p class="eyebrow uppercase">Meet Cameron</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">Your day-of coordinator</h2>
+        <blockquote class="font-display text-xl sm:text-2xl italic text-brand-800 leading-snug mt-6 border-l-2 border-gold-400 pl-5">
+          "I believe you deserve to feel present, calm, and celebrated on your wedding day."
+        </blockquote>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          Hi! I'm <span class="font-semibold">Cameron Puckett</span>, owner of The Last Detail TN. With a
+          background in logistics and a love for thoughtful design, I bring structure and warmth to every
+          celebration.
+        </p>
+        <p class="mt-3 text-slate-700 leading-relaxed">
+          I'm based in East Tennessee and travel across Knoxville, Sevierville, Gatlinburg, the Smokies,
+          and beyond.
+        </p>
       </div>
-      <div class="order-1 lg:order-2">
-        <img src="/assets/owner-portrait.jpg?v=5" alt="Cameron Puckett portrait" class="w-full rounded-2xl shadow-soft object-cover">
+      <div class="order-1 lg:order-2 relative reveal">
+        <div class="absolute -inset-3 rounded-[1.75rem] border border-gold-400/40 -z-10"></div>
+        <img src="/assets/owner-portrait.jpg?v=5" alt="Cameron Puckett portrait" class="w-full rounded-2xl shadow-lift object-cover aspect-[4/5]">
       </div>
     </div>
   </section>
 
-  <section id="gallery" class="py-20">
+  <!-- GALLERY -->
+  <section id="gallery" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="font-display text-3xl sm:text-4xl">Gallery</h2>
-        <p class="mt-3 text-slate-600">A few beautiful moments from recent celebrations.</p>
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="eyebrow uppercase">Recent celebrations</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">Gallery</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">A few beautiful moments from recent celebrations.</p>
       </div>
 
-      <div id="galleryGrid" class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
+      <div id="galleryGrid" class="masonry mt-14">
+        <figure class="rounded-xl shadow-soft overflow-hidden bg-white reveal">
           <img
             src="/assets/gallery/1-800.jpg"
             srcset="/assets/gallery/1-800.jpg 800w, /assets/gallery/1.jpg 1600w"
             sizes="(min-width:1024px) 33vw, 50vw"
             alt="Romantic tablescape"
             loading="lazy" decoding="async"
-            class="w-full h-full object-cover"
-            style="aspect-ratio: 4 / 3;"
+            class="w-full h-auto object-cover cursor-zoom-in hover:opacity-90 transition-opacity"
             onerror="this.onerror=null; this.src='/assets/gallery/1.JPG';">
         </figure>
-        <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
-          <img src="/assets/gallery/2.jpg" alt="Greenhouse reception" loading="lazy" class="w-full h-full object-cover" style="aspect-ratio: 4 / 3;" onerror="this.onerror=null; this.src='/assets/gallery/2.JPG';">
+        <figure class="rounded-xl shadow-soft overflow-hidden bg-white reveal">
+          <img src="/assets/gallery/2.jpg" alt="Greenhouse reception" loading="lazy" class="w-full h-auto object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onerror="this.onerror=null; this.src='/assets/gallery/2.JPG';">
         </figure>
-        <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
-          <img src="/assets/gallery/3.jpg" alt="Glowing lantern" loading="lazy" class="w-full h-full object-cover" style="aspect-ratio: 4 / 3;" onerror="this.onerror=null; this.src='/assets/gallery/3.JPG';">
+        <figure class="rounded-xl shadow-soft overflow-hidden bg-white reveal">
+          <img src="/assets/gallery/3.jpg" alt="Glowing lantern" loading="lazy" class="w-full h-auto object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onerror="this.onerror=null; this.src='/assets/gallery/3.JPG';">
         </figure>
-        <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
-          <img src="/assets/gallery/4.jpg" alt="Outdoor ceremony" loading="lazy" class="w-full h-full object-cover" style="aspect-ratio: 4 / 3;" onerror="this.onerror=null; this.src='/assets/gallery/4.JPG';">
+        <figure class="rounded-xl shadow-soft overflow-hidden bg-white reveal">
+          <img src="/assets/gallery/4.jpg" alt="Outdoor ceremony" loading="lazy" class="w-full h-auto object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onerror="this.onerror=null; this.src='/assets/gallery/4.JPG';">
         </figure>
-        <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
-          <img src="/assets/gallery/5.jpg" alt="Outdoor chapel" loading="lazy" class="w-full h-full object-cover" style="aspect-ratio: 4 / 3;" onerror="this.onerror=null; this.src='/assets/gallery/5.JPG';">
+        <figure class="rounded-xl shadow-soft overflow-hidden bg-white reveal">
+          <img src="/assets/gallery/5.jpg" alt="Outdoor chapel" loading="lazy" class="w-full h-auto object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onerror="this.onerror=null; this.src='/assets/gallery/5.JPG';">
         </figure>
-        <figure class="rounded-xl shadow-soft overflow-hidden bg-white">
-          <img src="/assets/gallery/6.jpg" alt="Draped backdrop" loading="lazy" class="w-full h-full object-cover" style="aspect-ratio: 4 / 3;" onerror="this.onerror=null; this.src='/assets/gallery/6.JPG';">
+        <figure class="rounded-xl shadow-soft overflow-hidden bg-white reveal">
+          <img src="/assets/gallery/6.jpg" alt="Draped backdrop" loading="lazy" class="w-full h-auto object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onerror="this.onerror=null; this.src='/assets/gallery/6.JPG';">
         </figure>
       </div>
+
+      <!--
+        NOTE FOR GUS: this section now uses the .masonry CSS class that already
+        existed in the stylesheet but wasn't being used. As you and Cameron add
+        more real wedding photos, just add more <figure><img></figure> blocks
+        here — the layout will handle mixed image heights automatically.
+      -->
     </div>
-    <div id="lightbox" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-6">
-      <button id="lightboxClose" class="absolute top-6 right-6 text-white/80 hover:text-white">✕</button>
+    <div id="lightbox" class="fixed inset-0 bg-black/85 hidden items-center justify-center p-6">
+      <button id="lightboxClose" class="absolute top-6 right-6 text-white/80 hover:text-white text-2xl" aria-label="Close">✕</button>
       <img id="lightboxImg" src="#" alt="Expanded gallery" class="max-h-[85vh] w-auto rounded-xl shadow-xl" />
     </div>
   </section>
 
-  <section id="faq" class="py-20 bg-white">
+  <div class="stitch max-w-7xl mx-auto"></div>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-24 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-display text-3xl sm:text-4xl text-center">Frequently asked</h2>
-      <div class="mt-8 divide-y rounded-2xl border bg-white">
+      <div class="text-center reveal">
+        <p class="eyebrow uppercase">Good to know</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">Frequently asked</h2>
+      </div>
+      <div class="mt-10 divide-y divide-ink/8 rounded-2xl border border-ink/8 bg-white overflow-hidden reveal">
         <details class="group p-6" open>
           <summary class="flex cursor-pointer list-none items-center justify-between font-medium">Do you offer full planning?
-            <span class="transition group-open:rotate-45">+</span>
+            <span class="transition group-open:rotate-45 text-gold-600">+</span>
           </summary>
-          <p class="mt-3 text-slate-700">We specialize in day-of (month-of) coordination and partner happily with planners for full-service requests.</p>
+          <p class="mt-3 text-slate-700 leading-relaxed">We specialize in day-of (month-of) coordination and partner happily with planners for full-service requests.</p>
         </details>
         <details class="group p-6">
           <summary class="flex cursor-pointer list-none items-center justify-between font-medium">Will you travel?
-            <span class="transition group-open:rotate-45">+</span>
+            <span class="transition group-open:rotate-45 text-gold-600">+</span>
           </summary>
-          <p class="mt-3 text-slate-700">Yes! We serve East Tennessee and are happy to discuss travel elsewhere.</p>
+          <p class="mt-3 text-slate-700 leading-relaxed">Yes! We serve East Tennessee and are happy to discuss travel elsewhere.</p>
         </details>
         <details class="group p-6">
           <summary class="flex cursor-pointer list-none items-center justify-between font-medium">Are rehearsals included?
-            <span class="transition group-open:rotate-45">+</span>
+            <span class="transition group-open:rotate-45 text-gold-600">+</span>
           </summary>
-          <p class="mt-3 text-slate-700">Rehearsal leadership is included in Signature and Premier packages and available as an add-on to Essentials.</p>
+          <p class="mt-3 text-slate-700 leading-relaxed">Rehearsal leadership is included in Signature and Premier packages and available as an add-on to Essentials.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="py-20">
+  <!-- CONTACT -->
+  <section id="contact" class="py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="font-display text-3xl sm:text-4xl">Let’s make your day effortless</h2>
-        <p class="mt-3 text-slate-600">Tell us about your date, venue, and must-haves. We’ll respond quickly with availability and next steps.</p>
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="eyebrow uppercase">Get in touch</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">Let's make your day effortless</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Tell us about your date, venue, and must-haves. We'll respond quickly with availability and next steps.</p>
       </div>
 
       <form id="inquiryForm"
-            class="mt-10 grid gap-6 bg-sand p-6 rounded-2xl shadow-soft"
+            class="mt-12 grid gap-6 bg-white p-8 sm:p-10 rounded-[1.5rem] shadow-soft border border-ink/5 reveal"
             action="https://formsubmit.co/chsquires13@gmail.com"
             method="POST">
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium">Name</label>
-            <input name="name" required autocomplete="name" class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="name" required autocomplete="name" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
           <div>
             <label class="block text-sm font-medium">Email</label>
-            <input name="_replyto" type="email" required autocomplete="email" class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="_replyto" type="email" required autocomplete="email" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
           <div>
             <label class="block text-sm font-medium">Contact number</label>
-            <input name="phone" type="tel" class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="phone" type="tel" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
           <div>
             <label class="block text-sm font-medium">Wedding date</label>
-            <input name="date" type="date" class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="date" type="date" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
           <div class="md:col-span-2">
             <label class="block text-sm font-medium">Venue / Location</label>
-            <input name="venue" class="mt-2 w-full rounded-xl border px-4 py-3" />
+            <input name="venue" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
         </div>
         <div>
           <label class="block text-sm font-medium">What are you envisioning?</label>
-          <textarea name="message" rows="5" class="mt-2 w-full rounded-xl border px-4 py-3"></textarea>
+          <textarea name="message" rows="5" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors"></textarea>
         </div>
 
         <input type="hidden" name="_subject" value="New Inquiry — The Last Detail TN" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_next" value="https://www.thelastdetailtn.com/?thanks=1#contact" />
 
-        <button class="inline-flex items-center justify-center rounded-full bg-brand-800 text-white px-6 py-3 font-semibold hover:bg-ink">
+        <button class="inline-flex items-center justify-center rounded-full bg-ink text-white px-6 py-3.5 font-semibold hover:bg-brand-800 transition-colors">
           Send inquiry
         </button>
       </form>
@@ -369,25 +488,25 @@
   </section>
 
   <div id="thanksModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 p-6">
-    <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-soft text-center">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-lift text-center">
         <h3 class="font-display text-2xl">Thanks!</h3>
         <p class="mt-2 text-slate-700">We've received your inquiry.</p>
-        <button id="thanksClose" class="mt-6 rounded-full bg-brand-800 px-5 py-2.5 font-semibold text-white">Close</button>
+        <button id="thanksClose" class="mt-6 rounded-full bg-ink px-6 py-2.5 font-semibold text-white hover:bg-brand-800 transition-colors">Close</button>
     </div>
   </div>
 
-  <footer class="py-12 border-t border-slate-200">
+  <footer class="py-12 border-t border-ink/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-600 mb-6">
         <p>© <span id="year"></span> The Last Detail TN · East Tennessee</p>
-        <a href="#home" class="hover:text-brand-700 font-medium transition-colors">Back to top ↑</a>
+        <a href="#home" class="hover:text-gold-700 font-medium transition-colors">Back to top ↑</a>
       </div>
-      
+
       <p style="font-size: 0.75rem; opacity: 0.7; color: #475569; margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
-        Digital Foundation by 
-        <a href="https://www.beacon865.com" 
-           target="_blank" 
-           rel="noopener" 
+        Digital Foundation by
+        <a href="https://www.beacon865.com"
+           target="_blank"
+           rel="noopener"
            style="color: #D4AF37; text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(212, 175, 55, 0.3); transition: all 0.3s ease;">
            Beacon 865
         </a>
@@ -401,11 +520,11 @@
     });
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Gallery
+    // Gallery lightbox
     const grid = document.getElementById('galleryGrid');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
-    const close = document.getElementById('lightboxClose');
+    const closeBtn = document.getElementById('lightboxClose');
     if (grid) {
       grid.addEventListener('click', (e)=>{
         if (e.target.tagName === 'IMG') {
@@ -415,9 +534,10 @@
         }
       });
     }
-    if (close) close.addEventListener('click', ()=>{ lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); });
+    if (closeBtn) closeBtn.addEventListener('click', ()=>{ lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); });
+    lightbox?.addEventListener('click', (e)=>{ if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
 
-    // Modal logic
+    // Thanks modal
     const modal = document.getElementById('thanksModal');
     const params = new URLSearchParams(location.search);
     if (params.get('thanks') === '1') {
@@ -428,6 +548,22 @@
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && reveals.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('is-visible'));
+    }
   </script>
 </body>
 </html>
