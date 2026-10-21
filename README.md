@@ -41,7 +41,7 @@ npx tailwindcss@3.4.17 -c tailwind.config.js -i tailwind/input.css -o assets/sty
 ## SEO checklist
 
 - `robots.txt` and `sitemap.xml` are at the site root. Update `<lastmod>` in the sitemap when
-  content changes, and submit `https://www.thelastdetailtn.com/sitemap.xml` in Google Search Console.
+  content changes, and submit `https://thelastdetailtn.com/sitemap.xml` in Google Search Console.
 - Business details for Google live in the JSON-LD block in `index.html`. When available, add the
   business phone (`"telephone"`), email, and real social profile URLs (`"sameAs": [...]`).
 - If you edit the FAQ, keep the FAQ JSON-LD in the `<head>` matching the visible questions.
