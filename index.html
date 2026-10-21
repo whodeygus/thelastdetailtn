@@ -620,20 +620,20 @@
           </div>
           <div>
             <label for="f-phone" class="block text-sm font-medium">Contact number</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
+            <input id="f-phone" name="phone" type="tel" required autocomplete="tel" pattern="[0-9\(\)\+\.\- ]{10,}" title="Please enter a phone number, including area code" placeholder="(865) 555-0123" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
           <div>
             <label for="f-date" class="block text-sm font-medium">Wedding date</label>
-            <input id="f-date" name="date" type="date" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
+            <input id="f-date" name="date" type="date" required class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
           <div class="md:col-span-2">
             <label for="f-venue" class="block text-sm font-medium">Venue / Location</label>
-            <input id="f-venue" name="venue" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
+            <input id="f-venue" name="venue" required placeholder="Venue name or city (or &quot;still deciding&quot;)" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors" />
           </div>
         </div>
         <div>
           <label for="f-message" class="block text-sm font-medium">What are you envisioning?</label>
-          <textarea id="f-message" name="message" rows="5" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors"></textarea>
+          <textarea id="f-message" name="message" rows="5" required minlength="10" placeholder="Guest count, style, must-haves, anything you're unsure about" class="mt-2 w-full rounded-xl border border-ink/15 px-4 py-3 focus:border-gold-500 transition-colors"></textarea>
         </div>
 
         <input type="hidden" name="_subject" value="New Inquiry — The Last Detail TN" />
