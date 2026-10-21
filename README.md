@@ -25,7 +25,24 @@ thelastdetailtn/
 3. Vercel will auto-detect the static site and deploy it instantly.
 4. Add your domain purchased on Namecheap to the project in Vercel's Domain settings.
 
-## Notes
+## Styles (Tailwind)
 
-- Replace placeholder images with real ones in the `/assets` folder.
-- Update `index.html` with the full code provided in ChatGPT (this starter file is just a placeholder).
+The page uses a pre-built Tailwind stylesheet at `assets/styles.css` (faster than loading
+Tailwind in the browser, which Google penalizes on page speed). Colors and fonts live in
+`tailwind.config.js`.
+
+If you add or change Tailwind classes in `index.html`, rebuild the CSS and bump the `?v=` number
+on the `styles.css` link in `index.html`:
+
+```
+npx tailwindcss@3.4.17 -c tailwind.config.js -i tailwind/input.css -o assets/styles.css --minify
+```
+
+## SEO checklist
+
+- `robots.txt` and `sitemap.xml` are at the site root. Update `<lastmod>` in the sitemap when
+  content changes, and submit `https://www.thelastdetailtn.com/sitemap.xml` in Google Search Console.
+- Business details for Google live in the JSON-LD block in `index.html`. When available, add the
+  business phone (`"telephone"`), email, and real social profile URLs (`"sameAs": [...]`).
+- If you edit the FAQ, keep the FAQ JSON-LD in the `<head>` matching the visible questions.
+- Give new gallery photos descriptive `alt` text (what it is + where), plus an 800px version for `srcset`.
